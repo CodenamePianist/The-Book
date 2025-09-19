@@ -27,38 +27,38 @@ export default function Layout() {
         {/* Navigation Bar */}
         <nav className="w-full flex justify-evenly">
           <NavLink
-            to=""
+            to="/"
             className="uppercase text-[20px] text-white hover:text-[#39FF14] hover:scale-125"
           >
             Home
           </NavLink>
           <NavLink
-            to=""
+            to="/store"
             className="uppercase text-[20px] text-white hover:text-[#39FF14] hover:scale-125"
           >
             Store
           </NavLink>
           <NavLink
-            to=""
+            to="/festivals"
             className="uppercase text-[20px] text-white hover:text-[#39FF14] hover:scale-125"
           >
             Festivals
           </NavLink>
           <NavLink
-            to=""
+            to="/kandigen"
             className="uppercase text-[20px] text-white hover:text-[#39FF14] hover:scale-125"
           >
             Kandi Generator
           </NavLink>
           <NavLink
-            to=""
+            to="/groups"
             className="uppercase text-[20px] text-white hover:text-[#39FF14] hover:scale-125"
           >
             Groups
           </NavLink>
           {isLoggedIn && (
             <NavLink
-              to=""
+              to="/account"
               className="uppercase text-[20px] text-white hover:text-[#39FF14] hover:scale-125"
             >
               Account
