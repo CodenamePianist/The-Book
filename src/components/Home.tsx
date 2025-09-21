@@ -1,8 +1,45 @@
-import React from 'react'
+import React from "react";
+
+const featuredFestivals = [
+  {
+    name: "Hallowed Sky",
+    date: "OCT 28-29, 2024",
+    location: "Las Vegas, NV",
+    imageUrl: "https://placehold.co/400x250/000000/00ff00?text=Electric+Sky",
+  },
+  {
+    name: "Cosmic Flow",
+    date: "NOV 15-17, 2024",
+    location: "Miami, FL",
+    imageUrl: "https://placehold.co/400x250/000000/00ff00?text=Cosmic+Flow",
+  },
+  {
+    name: "Zenith Sound",
+    date: "DEC 2-3, 2024",
+    location: "Denver, CO",
+    imageUrl: "https://placehold.co/400x250/000000/00ff00?text=Zenith+Sound",
+  },
+];
 
 export default function Home() {
   return (
-    <div>HI, THIS IS A PLACEHOLDER WHILE I DO THE ROUTER</div>
-  )
-}
+    <>
+      <section>
+        {/* This section will hold the cards that will show the featured festivals */}
+        <h2 className="mt-6 text-center text-[30px] uppercase text-[#39FF14] font-semibold">Upcoming Festivals</h2>
 
+        <div className="flex justify-center gap-6 mt-6">
+          {featuredFestivals.map((festival, index) => (
+            <div key={index} className="border border-solid border-white rounded-xl overflow-hidden flex-col justify-items-center">
+                  <img src={festival.imageUrl} alt={festival.name} className="rounded-xl pt-4" />
+                  <h3 className="text-white font-bold text-2xl mb-1">{festival.name}</h3>
+                  <p className="text-[#39FF14] text-lg mb-2">{festival.date}</p>
+                  <p className="text-gray-400 text-lg mb-4">{festival.location}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      <div>{/* This div will hold cards describing other features */}</div>
+    </>
+  );
+}
