@@ -30,7 +30,7 @@ export default function Home() {
 
         <div className="flex justify-center gap-12 mt-6">
           {featuredFestivals.map((festival, index) => (
-            <div key={index} className="border border-solid border-white rounded-xl shadow-2xl shadow-[#39FF14] overflow-hidden flex flex-col items-center transition hover:scale-110">
+            <div key={index} className="border border-solid border-[#39FF14] rounded-xl shadow-2xl shadow-[#39FF14] overflow-hidden flex flex-col items-center transition hover:scale-110">
                   <img src={festival.imageUrl} alt={festival.name} className="rounded-xl pt-4" />
                   <h3 className="text-white font-bold text-2xl mb-1">{festival.name}</h3>
                   <p className="text-[#39FF14] text-lg mb-2">{festival.date}</p>

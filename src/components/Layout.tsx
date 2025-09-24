@@ -67,7 +67,7 @@ export default function Layout() {
         </nav>
         <h2 className="text-white text-center mt-10">
           Welcome to The Book of Rave-Alations, your one-stop shop for all of your
-          rave needs! We{`${"'"}`}re constantly adding new features so stay with
+          rave and festival needs! We{`${"'"}`}re constantly adding new features so stay with
           us as the site grows!
         </h2>
         <Outlet />
