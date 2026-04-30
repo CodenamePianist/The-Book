@@ -1,0 +1,23 @@
+CREATE TABLE users (
+user_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+first_name VARCHAR(55) NOT NULL,
+last_name VARCHAR(55) NOT NULL,
+password VARCHAR(255) NOT NULL,
+email VARCHAR(255) UNIQUE NOT NULL,
+sign_up_date DATE NOT NULL
+);
+
+CREATE TABLE groups (
+group_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+group_name VARCHAR(50) NOT NULL,
+created_at DATE,
+updated_at DATE
+);
+
+CREATE TABLE user_group (
+user_group_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+user_id INT,
+group_id INT,
+CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES groups(group_id)
+);
