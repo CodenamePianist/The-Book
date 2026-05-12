@@ -2,7 +2,6 @@ package com.rave_backend.book_of_ravealation_backend.controllers;
 
 import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import com.rave_backend.book_of_ravealation_backend.service.UsersService;
-import org.springframework.boot.webmvc.autoconfigure.WebMvcProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,7 @@ public class UsersController {
 
     //Get a single user by their ID
     @GetMapping("/{userId}")
-    public UsersResponse getUserbyId(@PathVariable Long userId) {
+    public UsersResponse getUserById(@PathVariable Long userId) {
         var user = usersService.getUsersbyUserId(userId);
         return user;
     }
