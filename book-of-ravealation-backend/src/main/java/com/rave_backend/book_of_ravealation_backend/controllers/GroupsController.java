@@ -20,7 +20,7 @@ public class GroupsController {
     }
 
     //Get all groups
-
+    @GetMapping
     public Set<GroupsResponse> getAllGroups() {
         var groups = groupsService.getAllGroups();
         return groups;
