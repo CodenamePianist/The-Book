@@ -11,22 +11,17 @@ import java.util.Set;
 @Service
 public class GroupsService {
     private final GroupsRepository groupsRepository;
-    private Groups groups;
 
     public GroupsService(GroupsRepository groupsRepository) {
         this.groupsRepository = groupsRepository;
     }
 
-    private GroupsResponse buildGroupsResponse(Groups groups) {
-        return new GroupsResponse(groups.getGroupId(), groups.getGroupName(), groups.getCreatedAt(), groups.getUpdatedAt(), groups.getMembers());
-    }
 
-    public GroupsResponse getGroupsByGroupId(Long groupId) {
+    public Groups getGroupsByGroupId(Long groupId) {
         var group = groupsRepository.findById(groupId);
 
         if (group.isPresent()) {
-            var g = group.get();
-            return buildGroupsResponse(g);
+            return group.get();
         }
 
         return null;

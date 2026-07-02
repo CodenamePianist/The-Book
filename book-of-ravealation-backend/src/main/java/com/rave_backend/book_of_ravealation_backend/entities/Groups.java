@@ -70,4 +70,15 @@ public class Groups {
     public void setMembers(Set<Users> members) {
         this.members = members;
     }
+
+    @Override
+    public String toString() {
+        return "GroupsEntity{" +
+                "id=" + groupId +
+                ", groupName=" + groupName + '\'' +
+                ", createdAt=" + createdAt + '\'' +
+                ", updatedAt=" + updatedAt + '\'' +
+                ", members=" + members + '\'' +
+                '}';
+    }
 }

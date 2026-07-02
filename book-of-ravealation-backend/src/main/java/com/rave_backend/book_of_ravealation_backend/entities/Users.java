@@ -1,5 +1,6 @@
 package com.rave_backend.book_of_ravealation_backend.entities;
 
+import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -99,5 +100,10 @@ public class Users {
 
     public void setGroups(Set<Groups> groups) {
         this.groups = groups;
+    }
+
+    public UsersResponse toResponse() {
+        UsersResponse dto = new UsersResponse(this.userId, this.firstName, this.lastName, this.email);
+        return dto;
     }
 }

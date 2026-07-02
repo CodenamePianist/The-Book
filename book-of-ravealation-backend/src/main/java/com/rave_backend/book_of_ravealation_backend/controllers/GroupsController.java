@@ -1,6 +1,7 @@
 package com.rave_backend.book_of_ravealation_backend.controllers;
 
 import com.rave_backend.book_of_ravealation_backend.dto.GroupsResponse;
+import com.rave_backend.book_of_ravealation_backend.entities.Groups;
 import com.rave_backend.book_of_ravealation_backend.service.GroupsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,10 @@ public class GroupsController {
         this.groupsService = groupsService;
     }
 
+    private GroupsResponse buildGroupsResponse(Groups groups) {
+        return new GroupsResponse(groups.getGroupId(), groups.getGroupName(), groups.getCreatedAt(), groups.getUpdatedAt(), groups.getMembers());
+    }
+
     //Get all groups
     @GetMapping
     public Set<GroupsResponse> getAllGroups() {
@@ -30,7 +35,8 @@ public class GroupsController {
     @GetMapping("/{groupId}")
     public GroupsResponse getGroupById(@PathVariable long groupId) {
         var group = groupsService.getGroupsByGroupId(groupId);
-        return group;
+        GroupsResponse response = buildGroupsResponse(group);
+        return response;
     }
 
 }
