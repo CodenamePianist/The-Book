@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/groups")
@@ -20,23 +21,21 @@ public class GroupsController {
         this.groupsService = groupsService;
     }
 
-    private GroupsResponse buildGroupsResponse(Groups groups) {
-        return new GroupsResponse(groups.getGroupId(), groups.getGroupName(), groups.getCreatedAt(), groups.getUpdatedAt(), groups.getMembers());
+    //Get a single group by the groupId
+    @GetMapping("/{groupId}")
+    public GroupsResponse getGroupsById(@PathVariable Long groupId) {
+        var group = groupsService.getGroupsByGroupId(groupId);
+        return group.toResponse();
     }
-
     //Get all groups
     @GetMapping
     public Set<GroupsResponse> getAllGroups() {
-        var groups = groupsService.getAllGroups();
-        return groups;
+        var groupSet = groupsService.getAllGroups();
+        return groupSet.stream()
+                .map(Groups :: toResponse)
+                .collect(Collectors.toSet());
     }
 
-    //Get a single group by the groupId
-    @GetMapping("/{groupId}")
-    public GroupsResponse getGroupById(@PathVariable long groupId) {
-        var group = groupsService.getGroupsByGroupId(groupId);
-        GroupsResponse response = buildGroupsResponse(group);
-        return response;
-    }
+
 
 }

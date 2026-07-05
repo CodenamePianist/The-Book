@@ -1,5 +1,6 @@
 package com.rave_backend.book_of_ravealation_backend.entities;
 
+import com.rave_backend.book_of_ravealation_backend.dto.GroupsResponse;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -71,14 +72,8 @@ public class Groups {
         this.members = members;
     }
 
-    @Override
-    public String toString() {
-        return "GroupsEntity{" +
-                "id=" + groupId +
-                ", groupName=" + groupName + '\'' +
-                ", createdAt=" + createdAt + '\'' +
-                ", updatedAt=" + updatedAt + '\'' +
-                ", members=" + members + '\'' +
-                '}';
+    public GroupsResponse toResponse() {
+        GroupsResponse dto = new GroupsResponse(this.groupId, this.groupName, this.createdAt, this.updatedAt, this.members);
+        return dto;
     }
 }

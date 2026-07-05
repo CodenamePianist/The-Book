@@ -23,7 +23,7 @@ public class UsersController {
 
     //Get a single user by their ID
     @GetMapping("/userId")
-    public UsersResponse getUsersbyUserId(Long userId) {
+    public UsersResponse getUsersByUserId(@PathVariable Long userId) {
         var user = usersService.getUsersByUserId(userId);
         return user.toResponse();
     }
@@ -31,7 +31,9 @@ public class UsersController {
     //Get all users in the DB
     @GetMapping
     public Set<UsersResponse> getAllUsers(Set<Users> users) {
-        return users.stream()
-                .map(Users :: toResponse).collect(Collectors.toSet());
+        var userSet = usersService.getAllUsers();
+        return userSet.stream()
+                .map(Users :: toResponse)
+                .collect(Collectors.toSet());
     }
 }

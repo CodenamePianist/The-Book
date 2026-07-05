@@ -5,6 +5,7 @@ import com.rave_backend.book_of_ravealation_backend.entities.Groups;
 import com.rave_backend.book_of_ravealation_backend.repositories.GroupsRepository;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,12 +28,12 @@ public class GroupsService {
         return null;
     }
 
-    public Set<GroupsResponse> getAllGroups() {
+    public Set<Groups> getAllGroups() {
         var groups = groupsRepository.findAll();
-        var responseList = new HashSet<GroupsResponse>();
+        var responseList = new HashSet<Groups>();
 
-        for (var group : groups) {
-            responseList.add(new GroupsResponse(group.getGroupId(), group.getGroupName(), group.getCreatedAt(), group.getUpdatedAt(), group.getMembers()));
+        for (Groups group : groups) {
+            responseList.add(group);
         }
 
         return responseList;
