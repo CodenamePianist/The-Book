@@ -1,6 +1,7 @@
 package com.rave_backend.book_of_ravealation_backend.entities;
 
 import com.rave_backend.book_of_ravealation_backend.dto.GroupsResponse;
+import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -26,7 +27,7 @@ public class Groups {
     private Date updatedAt;
 
     @ManyToMany(mappedBy = "groups")
-    private Set<Users> members = new HashSet<>();
+    private Set<UsersResponse> members = new HashSet<>();
 
     public Groups(String groupName) {
         this.groupName = groupName;
@@ -64,16 +65,23 @@ public class Groups {
         this.updatedAt = updatedAt;
     }
 
-    public Set<Users> getMembers() {
+    public Set<UsersResponse> getMembers() {
         return members;
     }
 
-    public void setMembers(Set<Users> members) {
+    public void setMembers(Set<UsersResponse> members) {
         this.members = members;
     }
 
     public GroupsResponse toResponse() {
-        GroupsResponse dto = new GroupsResponse(this.groupId, this.groupName, this.createdAt, this.updatedAt, this.members);
+        GroupsResponse dto = new GroupsResponse(
+                this.groupId,
+                this.groupName,
+                this.createdAt,
+                this.updatedAt,
+                this.members
+        );
+
         return dto;
     }
 }

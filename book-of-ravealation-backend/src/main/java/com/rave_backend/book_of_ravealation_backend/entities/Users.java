@@ -1,5 +1,6 @@
 package com.rave_backend.book_of_ravealation_backend.entities;
 
+import com.rave_backend.book_of_ravealation_backend.dto.GroupsResponse;
 import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import jakarta.persistence.*;
 
@@ -37,7 +38,7 @@ public class Users {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
-    private Set<Groups> groups = new HashSet<>();
+    private Set<GroupsResponse> groups = new HashSet<>();
 
     public Users(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
@@ -94,16 +95,23 @@ public class Users {
         return signUpDate;
     }
 
-    public Set<Groups> getGroups() {
+    public Set<GroupsResponse> getGroups() {
         return groups;
     }
 
-    public void setGroups(Set<Groups> groups) {
+    public void setGroups(Set<GroupsResponse> groups) {
         this.groups = groups;
     }
 
     public UsersResponse toResponse() {
-        UsersResponse dto = new UsersResponse(this.userId, this.firstName, this.lastName, this.email);
+        UsersResponse dto = new UsersResponse(
+                this.userId,
+                this.firstName,
+                this.lastName,
+                this.email,
+                this.groups
+        );
+
         return dto;
     }
 }
