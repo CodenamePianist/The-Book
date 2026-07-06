@@ -1,6 +1,5 @@
 package com.rave_backend.book_of_ravealation_backend.service;
 
-import com.rave_backend.book_of_ravealation_backend.dto.GroupsResponse;
 import com.rave_backend.book_of_ravealation_backend.entities.Groups;
 import com.rave_backend.book_of_ravealation_backend.repositories.GroupsRepository;
 import org.springframework.stereotype.Service;

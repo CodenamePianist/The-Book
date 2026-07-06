@@ -1,6 +1,5 @@
 package com.rave_backend.book_of_ravealation_backend.service;
 
-import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import com.rave_backend.book_of_ravealation_backend.entities.Users;
 import com.rave_backend.book_of_ravealation_backend.repositories.UsersRepository;
 import org.springframework.stereotype.Service;

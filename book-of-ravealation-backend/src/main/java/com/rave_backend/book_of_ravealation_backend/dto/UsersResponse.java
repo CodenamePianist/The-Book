@@ -7,6 +7,6 @@ public record UsersResponse(
         String firstName,
         String lastName,
         String email,
-        Set<GroupsResponse> members
+        Set<GroupsResponse> groups
 ) {
 }
