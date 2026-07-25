@@ -1,6 +1,5 @@
 package com.rave_backend.book_of_ravealation_backend.service;
 
-import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import com.rave_backend.book_of_ravealation_backend.entities.Users;
 import com.rave_backend.book_of_ravealation_backend.repositories.UsersRepository;
 import org.springframework.stereotype.Service;
@@ -17,28 +16,25 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    private UsersResponse buildUserResponse(Users user) {
-        return new UsersResponse(user.getUserId(), user.getFirstName(), user.getLastName(), user.getEmail() );
-    }
 
-    public UsersResponse getUsersbyUserId(Long userId) {
+    public Users getUsersByUserId(Long userId) {
         var user = usersRepository.findById(userId);
 
         if (user.isPresent()) {
-            var u = user.get();
-            return buildUserResponse(u);
+            return user.get();
         }
 
         return null;
     }
 
-    public Set<UsersResponse> getAllUsers() {
+    public Set<Users> getAllUsers() {
         var users = usersRepository.findAll();
-        var responseList = new HashSet<UsersResponse>();
+        var responseList = new HashSet<Users>();
 
-        for (var user : users) {
-            responseList.add(new UsersResponse(user.getUserId(), user.getFirstName(), user.getLastName(), user.getEmail()));
+        for (Users user : users) {
+            responseList.add(user);
         }
+
         return responseList;
     }
 }

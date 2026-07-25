@@ -1,10 +1,13 @@
 package com.rave_backend.book_of_ravealation_backend.entities;
 
+import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 
 @Entity
 @Table(name = "users")
@@ -99,5 +102,25 @@ public class Users {
 
     public void setGroups(Set<Groups> groups) {
         this.groups = groups;
+    }
+
+    public UsersResponse toResponse() {
+        return toResponse(true);
+    }
+
+    public UsersResponse toResponse(boolean includeGroups) {
+        UsersResponse dto = new UsersResponse(
+                this.userId,
+                this.firstName,
+                this.lastName,
+                this.email,
+                includeGroups
+                        ? this.groups.stream()
+                        .map(group -> group.toResponse(false))
+                        .collect(Collectors.toSet())
+                        : null
+        );
+
+        return dto;
     }
 }
