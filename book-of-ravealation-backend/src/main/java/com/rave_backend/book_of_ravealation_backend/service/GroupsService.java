@@ -1,6 +1,7 @@
 package com.rave_backend.book_of_ravealation_backend.service;
 
 import com.rave_backend.book_of_ravealation_backend.entities.Groups;
+import com.rave_backend.book_of_ravealation_backend.exception.ResourceNotFoundException;
 import com.rave_backend.book_of_ravealation_backend.repositories.GroupsRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,7 @@ public class GroupsService {
 
     public Groups getGroupsByGroupId(Long groupId) {
         var group = groupsRepository.findById(groupId);
-
-        if (group.isPresent()) {
-            return group.get();
-        }
-
-        return null;
+        return group.orElseThrow(() -> new ResourceNotFoundException("Group not found: " + groupId));
     }
 
     public Set<Groups> getAllGroups() {

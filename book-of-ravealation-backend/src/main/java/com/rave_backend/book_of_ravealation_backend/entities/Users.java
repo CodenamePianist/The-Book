@@ -2,7 +2,9 @@ package com.rave_backend.book_of_ravealation_backend.entities;
 
 import com.rave_backend.book_of_ravealation_backend.dto.UsersResponse;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +33,7 @@ public class Users {
     private String email;
 
     @Column(name = "sign_up_date", nullable = false)
-    private Date signUpDate;
+    private LocalDateTime signUpDate;
 
     @ManyToMany
     @JoinTable(
@@ -47,6 +49,8 @@ public class Users {
         this.password = password;
         this.email = email;
     }
+
+    public Users() {}
 
     public void setUserId(long userId) {
         this.userId = userId;
@@ -88,12 +92,17 @@ public class Users {
         return email;
     }
 
-    public void setSignUpDate(Date signUpDate) {
+    public void setSignUpDate(LocalDateTime signUpDate) {
         this.signUpDate = signUpDate;
     }
 
-    public Date getSignUpDate() {
+    public LocalDateTime getSignUpDate() {
         return signUpDate;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.signUpDate = LocalDateTime.now();
     }
 
     public Set<Groups> getGroups() {
