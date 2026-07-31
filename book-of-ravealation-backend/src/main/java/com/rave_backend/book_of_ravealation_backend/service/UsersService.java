@@ -43,4 +43,10 @@ public class UsersService {
 
         usersRepository.save(newUser);
     };
+
+    public void deleteUser(Long userId) {
+        Users user = usersRepository.findById(userId).get();
+
+        usersRepository.delete(user);
+    }
 }

@@ -43,4 +43,12 @@ public class UsersController {
         usersService.registerUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    //Delete a user
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+        usersService.deleteUser(userId);
+
+        return ResponseEntity.ok().build();
+    }
 }
